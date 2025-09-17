@@ -1,11 +1,12 @@
 const express = require('express');
 const cors = require('cors'); 
 const fetch = require('node-fetch');
+
 const app = express();
 
 const port = 3001;
 app.use(cors({
-  origin: ['http://localhost:3000','https://weather-six-rho-80.vercel.app/' ]
+  origin: ['http://localhost:3000','http://127.0.0.1:5173' ] 
 }));
 app.use(express.json());
 
@@ -51,6 +52,7 @@ async function getWeatherByCity(city) {
     return await getWeather(lat, lon);
   } catch (error) {
     console.error("Error getting city coordinates:", error);
+
     return null;
   }
 }

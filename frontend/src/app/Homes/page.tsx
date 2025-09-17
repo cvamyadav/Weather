@@ -53,9 +53,9 @@ export default function Homes() {
    
     try {
       const response = await fetch(
-        `https://weather-six-rho-80.vercel.app/api/weatherdaily/${searchQuery}`
+        `http://localhost:3001/api/weatherdaily/${searchQuery}`
       );
-      
+      console.log("API Response:", response);
       if (!response.ok) {
         throw new Error("Search again");
       }
@@ -96,7 +96,7 @@ export default function Homes() {
               className="px-6 py-3 bg-blue-600 hover:bg-blue-700 transition-colors rounded-lg font-medium"
             >
               Search
-            </button>
+            </button> 
 
             <Link 
               href="/Weatherdetail" 
