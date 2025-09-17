@@ -66,7 +66,7 @@ export default function AboutPage() {
                 <li>Real-time and forecast data</li>
                 <li>15+ weather variables including temperature, precipitation, wind, etc.</li>
                 <li>High-resolution (1-11 km) weather models</li>
-                <li>Historical data available</li>
+                <li>If you use free api - Nominatim has a strict usage policy limiting requests to a maximum of 1 per second per application</li>
                 <li>No API key required for basic usage</li>
               </ul>
             </div>

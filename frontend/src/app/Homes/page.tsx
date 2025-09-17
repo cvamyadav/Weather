@@ -155,7 +155,7 @@ export default function Homes() {
                   </div>
                 )}
               </div>
-            </div>
+            </div> 
           </div>
         )}
       </main>
@@ -163,6 +163,7 @@ export default function Homes() {
       <footer className="max-w-4xl mx-auto mt-8 text-center text-gray-500 text-xs">
         <p>Weather data provided API</p>
         <p className="text-2xl text-bold ">Once the page get Mount the local storage get deleted</p>
+        <p className="text-bold">Nominatim has a strict usage policy limiting requests to a maximum of 1 per second per application. Take pause for second search .</p>
       </footer>
     </div>
   );
