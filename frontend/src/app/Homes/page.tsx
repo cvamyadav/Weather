@@ -128,7 +128,7 @@ export default function Homes() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <h2 className="text-xl font-semibold capitalize">
-                  {searchQuery}
+                 {searchHistory.length > 0 ? ` ${searchHistory[searchHistory.length - 1]}` : ''}
                 </h2>
                 <p className="text-gray-400 text-sm">Current conditions</p>
               </div>

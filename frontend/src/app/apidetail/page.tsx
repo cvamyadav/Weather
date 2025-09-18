@@ -129,7 +129,7 @@ export default function AboutPage() {
                 The complete source code for this application is available on GitHub:
               </p>
               <a 
-                href="https://github.com/yourusername/weatherwise" 
+                href="https://github.com/cvamyadav/Weather" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-blue-400 hover:underline"
