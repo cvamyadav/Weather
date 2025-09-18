@@ -20,7 +20,7 @@ app.get('/api/weatherdaily/:city', async (req, res) => {
     res.json(weatherData);
   } catch (error) {
     console.error('Error fetching weather:', error);
-    res.status(500).json({ error: 'Failed to fetch weather data' });
+   
   }
 });
 
@@ -60,4 +60,5 @@ async function getWeatherByCity(city) {
 app.listen(port, () => {
   console.log(`Backend running at http://localhost:${port}`);
 });
+
 
