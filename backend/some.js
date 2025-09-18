@@ -6,7 +6,7 @@ const app = express();
 
 const port = 3001;
 app.use(cors({
-  origin: ['http://localhost:3000','https://weather-pied-mu-54.vercel.app/' ] 
+  origin: ['http://localhost:3000','https://weather-pied-mu-54.vercel.app' ] 
 }));
 app.use(express.json());
 
@@ -60,3 +60,4 @@ async function getWeatherByCity(city) {
 app.listen(port, () => {
   console.log(`Backend running at http://localhost:${port}`);
 });
+
