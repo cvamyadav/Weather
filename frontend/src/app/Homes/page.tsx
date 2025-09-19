@@ -53,7 +53,7 @@ export default function Homes() {
    
     try {
       const response = await fetch(
-        `http://localhost:3001/api/weatherdaily/${searchQuery}`
+        `https://weather-pied-mu-54.vercel.app//api/weatherdaily/${searchQuery}`
       );
       console.log("API Response:", response);
       if (!response.ok) {
@@ -167,4 +167,5 @@ export default function Homes() {
       </footer>
     </div>
   );
+
 }
