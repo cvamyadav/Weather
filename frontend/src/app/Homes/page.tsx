@@ -5,7 +5,7 @@ import Link from "next/link";
 import { initialize } from "next/dist/server/lib/router-server";
 
 
-const url = process.env.NEXT_PUBLIC_BACKEND_URL ||  "http://localhost:3001" || "https://weather-pied-mu-54.vercel.app" || "https://weather-pied-mu-54.vercel.app-this";
+const url = process.env.NEXT_PUBLIC_BACKEND_URL ||  "http://localhost:3001" || "https://weather-ekho.vercel.app/" || "https://weather-pied-mu-54.vercel.app-this";
 
 interface CurrentWeather {
   temperature: number;
@@ -58,11 +58,7 @@ export default function Homes() {
     try {
 
       const response = await fetch(
-<<<<<<< HEAD
-        `https://weather-pied-mu-54.vercel.app//api/weatherdaily/${searchQuery}`
-=======
         `${url}/api/weatherdaily/${searchQuery}`
->>>>>>> 8d5daa5 (first)
       );
     
       if (!response.ok) {
