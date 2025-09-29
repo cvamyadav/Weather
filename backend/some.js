@@ -10,7 +10,7 @@ app.use(cors({
     'http://localhost:3001',
     'http://localhost:3000',
     'https://weather-pied-mu-54.vercel.app',
-    'https://weather-pied-mu-54.vercel.app-this',
+    'https://weather-lovat-xi-38.vercel.app/',
     /\.vercel\.app$/
   ]
 }));
