@@ -1,11 +1,11 @@
 
-"use client"
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { initialize } from "next/dist/server/lib/router-server";
 
 
-const url = process.env.NEXT_PUBLIC_BACKEND_URL ||  "http://localhost:3001" || "https://weather-shivam-yadavs-projects-c0e68ae6.vercel.app/"|| "https://weather-lovat-xi-38.vercel.app/";
+const url = process.env.NEXT_PUBLIC_BACKEND_URL ;
+
 
 interface CurrentWeather {
   temperature: number;
@@ -54,11 +54,11 @@ export default function Homes() {
     setLoading(true);
     setError(null);
 
-   
+
     try {
 
       const response = await fetch(
-        `${url}/api/weatherdaily/${searchQuery}`
+        `https://weather-lovat-xi-38.vercel.app//api/weatherdaily/${searchQuery}`
       );
     
       if (!response.ok) {
@@ -83,6 +83,7 @@ export default function Homes() {
     }
       return lastRequest; 
   };
+
 
   return (
     <div className="w-full min-h-screen bg-gray-900 text-gray-100 p-4 md:p-8">
