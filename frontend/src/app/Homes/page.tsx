@@ -58,7 +58,7 @@ export default function Homes() {
     try {
 
       const response = await fetch(
-        `https://weather-lovat-xi-38.vercel.app//api/weatherdaily/${searchQuery}`
+        `https://weather-lovat-xi-38.vercel.app/api/weatherdaily/${searchQuery}`
       );
     
       if (!response.ok) {
