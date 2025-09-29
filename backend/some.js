@@ -68,3 +68,4 @@ app.listen(port, () => {
   console.log(`Backend running at http://localhost:${port}`);
 });
 
+console.log("city", process.env.CITY || "varanasi");
