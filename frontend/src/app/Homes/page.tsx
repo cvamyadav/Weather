@@ -5,7 +5,7 @@ import Link from "next/link";
 import { initialize } from "next/dist/server/lib/router-server";
 
 
-const url = process.env.NEXT_PUBLIC_BACKEND_URL ||  "http://localhost:3001" || "https://weather-ekho.vercel.app/" || "https://weather-pied-mu-54.vercel.app-this";
+const url = process.env.NEXT_PUBLIC_BACKEND_URL ||  "http://localhost:3001" || "https://weather-shivam-yadavs-projects-c0e68ae6.vercel.app/"|| "https://weather-lovat-xi-38.vercel.app/";
 
 interface CurrentWeather {
   temperature: number;

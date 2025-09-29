@@ -68,9 +68,3 @@ app.listen(port, () => {
   console.log(`Backend running at http://localhost:${port}`);
 });
 
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 8d5daa5 (first)
