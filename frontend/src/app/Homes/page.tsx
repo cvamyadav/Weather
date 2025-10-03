@@ -1,10 +1,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { initialize } from "next/dist/server/lib/router-server";
 
 
-const url = process.env.NEXT_PUBLIC_BACKEND_URL ;
 
 
 interface CurrentWeather {
@@ -58,7 +56,7 @@ export default function Homes() {
     try {
 
       const response = await fetch(
-        `/api/weatherdaily/${searchQuery}`
+        `https://weather-sogz.vercel.app/api/weatherdaily/${searchQuery}`
       );
               console.log("Response not ok:", response.status, response.statusText);
 

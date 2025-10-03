@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 });
 
 
-const port = 3001;
+
 app.use(cors({
    origin: [
     'http://localhost:3001',
@@ -24,7 +24,7 @@ app.use(cors({
 app.use(express.json());
 
 app.get('/api/weatherdaily/:city', async (req, res) => { 
-  try {
+  try { 
     const city = req.params.city || req.query.city || "varanasi"; 
     const weatherData = await getWeatherByCity(city);
     if (!weatherData) {
@@ -70,11 +70,7 @@ async function getWeatherByCity(city) {
   }
 }
 
-app.listen(port, () => {
-  console.log(`Backend running at http://localhost:${port}`);
-});
 
-console.log("city", process.env.CITY || "varanasi");
 
 
 
