@@ -69,3 +69,5 @@ app.listen(port, () => {
 });
 
 console.log("city", process.env.CITY || "varanasi");
+
+module.exports = app;

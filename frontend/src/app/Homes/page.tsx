@@ -58,14 +58,16 @@ export default function Homes() {
     try {
 
       const response = await fetch(
-        `https://weather-lovat-xi-38.vercel.app/api/weatherdaily/${searchQuery}`
+        `/api/weatherdaily/${searchQuery}`
       );
-    
+              console.log("Response not ok:", response.status, response.statusText);
+
       if (!response.ok) {
         throw new Error("Search again");
       }
       
       const data = await response.json();
+      console.log("Fetched weather data:", data);
       setWeather(data);
       
       setSearchHistory(prev => {
