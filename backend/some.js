@@ -4,20 +4,17 @@ const fetch = require('node-fetch');
 
 const app = express();
 
-const port = 3001;
-
-
-
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello from the backend!');
 });
 
 
-
+const port = 3001;
 app.use(cors({
    origin: [
     'http://localhost:3001',
     'http://localhost:3000',
+    'https://weather-sogz.vercel.app/',
     'https://weather-pied-mu-54.vercel.app',
     'https://weather-lovat-xi-38.vercel.app/',
     /\.vercel\.app$/
@@ -78,5 +75,7 @@ app.listen(port, () => {
 });
 
 console.log("city", process.env.CITY || "varanasi");
+
+
 
 module.exports = app;
