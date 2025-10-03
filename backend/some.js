@@ -5,6 +5,15 @@ const fetch = require('node-fetch');
 const app = express();
 
 const port = 3001;
+
+
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+});
+
+
+
 app.use(cors({
    origin: [
     'http://localhost:3001',
