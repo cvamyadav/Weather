@@ -1,52 +1,137 @@
+// const express = require('express');
+// const cors = require('cors'); 
+// const fetch = require('node-fetch');
+
+// const app = express();
+
+// app.get('/', (req, res) => {
+//   res.send('Hello from the backend!');
+// });
+
+
+
+// app.use(cors({
+//    origin: [
+//     'http://localhost:3001',
+//     'http://localhost:3000',
+//     'https://weather-sogz.vercel.app/',
+//     'https://weather-pied-mu-54.vercel.app',
+//     'https://weather-lovat-xi-38.vercel.app/',
+//     /\.vercel\.app$/
+//   ],
+//   credentials: true,
+// }));
+
+// app.use(express.json());
+
+// app.get('/api/weatherdaily/:city', async (req, res) => { 
+//   try { 
+//     const city = req.params.city || req.query.city || "varanasi"; 
+//     const weatherData = await getWeatherByCity(city);
+//     if (!weatherData) {
+//       return res.status(404).json({ error: 'Weather data not found' });   
+//     }
+//     res.json(weatherData);
+//   } catch (error) {
+//     console.log('Error fetching weather:', error);
+   
+//   }
+// });
+
+
+// async function getWeather(latitude, longitude) {
+//   const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m`;
+  
+//   try {
+//     const response = await fetch(url);
+//     return await response.json();
+//   } catch (error) {
+//     console.error("Error fetching weather:", error);
+//     return null;
+//   }
+// }
+
+// async function getWeatherByCity(city) {
+//   const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(city)}&format=json`;
+  
+//   try {
+//     const geoResponse = await fetch(geocodeUrl);
+//     const geoData = await geoResponse.json();
+    
+//     if (geoData.length === 0) {
+//       throw new Error("City not found");
+//     }
+
+//     const { lat, lon } = geoData[0];
+//     return await getWeather(lat, lon);
+//   } catch (error) {
+//     console.error("Error getting city coordinates:", error);
+
+//     return null;
+//   }
+// }
+
+
+// module.exports = app;
+
+
 const express = require('express');
-const cors = require('cors'); 
-const fetch = require('node-fetch');
+const cors = require('cors');
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello from the backend!');
-});
-
-
-
-app.use(cors({
-   origin: [
-    'http://localhost:3001',
+// CORS configuration
+const corsOptions = {
+  origin: [
     'http://localhost:3000',
-    'https://weather-sogz.vercel.app/',
+    'http://localhost:3001',
+    'https://weather-sogz.vercel.app',
     'https://weather-pied-mu-54.vercel.app',
-    'https://weather-lovat-xi-38.vercel.app/',
+    'https://weather-lovat-xi-38.vercel.app',
     /\.vercel\.app$/
   ],
   credentials: true,
-}));
+  optionsSuccessStatus: 200
+};
 
+// Middleware
+app.use(cors(corsOptions));
 app.use(express.json());
 
-app.get('/api/weatherdaily/:city', async (req, res) => { 
-  try { 
-    const city = req.params.city || req.query.city || "varanasi"; 
+// Routes
+app.get('/', (req, res) => {
+  res.send('Weather API Backend is Running!');
+});
+
+app.get('/api/weatherdaily/:city?', async (req, res) => {
+  try {
+    const city = req.params.city || req.query.city || 'varanasi';
     const weatherData = await getWeatherByCity(city);
+    
     if (!weatherData) {
-      return res.status(404).json({ error: 'Weather data not found' });   
+      return res.status(404).json({ error: 'Weather data not found' });
     }
+    
     res.json(weatherData);
   } catch (error) {
-    console.log('Error fetching weather:', error);
-   
+    console.error('Error fetching weather:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 
+// Weather API functions
 async function getWeather(latitude, longitude) {
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m`;
   
   try {
     const response = await fetch(url);
+    if (!response.ok) throw new Error('Weather API failed');
     return await response.json();
   } catch (error) {
-    console.error("Error fetching weather:", error);
+    console.error('Error fetching weather:', error);
     return null;
   }
 }
@@ -55,24 +140,38 @@ async function getWeatherByCity(city) {
   const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(city)}&format=json`;
   
   try {
-    const geoResponse = await fetch(geocodeUrl);
-    const geoData = await geoResponse.json();
+    const response = await fetch(geocodeUrl);
+    if (!response.ok) throw new Error('Geocoding API failed');
+    
+    const geoData = await response.json();
     
     if (geoData.length === 0) {
-      throw new Error("City not found");
+      throw new Error('City not found');
     }
 
     const { lat, lon } = geoData[0];
     return await getWeather(lat, lon);
   } catch (error) {
-    console.error("Error getting city coordinates:", error);
-
+    console.error('Error getting city coordinates:', error);
     return null;
   }
 }
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'OK', message: 'Server is healthy' });
+});
 
+// Handle 404
+app.use('*', (req, res) => {
+  res.status(404).json({ error: 'Route not found' });
+});
 
+// Error handling middleware
+app.use((error, req, res, next) => {
+  console.error('Unhandled error:', error);
+  res.status(500).json({ error: 'Something went wrong!' });
+});
 
-
+// Export for Vercel
 module.exports = app;
