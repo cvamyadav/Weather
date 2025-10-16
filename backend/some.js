@@ -18,7 +18,8 @@ app.use(cors({
     'https://weather-pied-mu-54.vercel.app',
     'https://weather-lovat-xi-38.vercel.app/',
     /\.vercel\.app$/
-  ]
+  ],
+  credentials: true,
 }));
 
 app.use(express.json());

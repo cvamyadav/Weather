@@ -58,7 +58,7 @@ export default function Homes() {
       const response = await fetch(
         `https://weather-sogz.vercel.app/api/weatherdaily/${searchQuery}`
       );
-              console.log("Response not ok:", response.status, response.statusText);
+              console.log("Response not ok:", response.status, response);
 
       if (!response.ok) {
         throw new Error("Search again");
