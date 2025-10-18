@@ -1,3 +1,6 @@
+
+
+
 const express = require('express');
 const cors = require('cors'); 
 const fetch = require('node-fetch');
@@ -71,11 +74,6 @@ async function getWeatherByCity(city) {
     return null;
   }
 }
-
-app.listen(3001, () => {
-  console.log('Server is running on http://localhost:3001');
-}
-);
 
 module.exports = app;
 
