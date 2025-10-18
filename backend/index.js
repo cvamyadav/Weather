@@ -3,6 +3,7 @@ const cors = require('cors');
 const fetch = require('node-fetch');
 
 const app = express();
+const app = require('./app'); // your current file
 
 app.get('/', (req, res) => {
   res.send('Hello from the backend!');
