@@ -56,7 +56,7 @@ export default function Homes() {
     try {
 
       const response = await fetch(
-        `https://weather-x79z.vercel.app/api/weatherdaily/${searchQuery}`
+        `/api/weatherdaily/${searchQuery}`
       );
       console.log("Fetch response:", response);
       if (!response.ok) {
