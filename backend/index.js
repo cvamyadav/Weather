@@ -6,7 +6,6 @@ const cors = require('cors');
 const fetch = require('node-fetch');
 
 const app = express();
-const app = require('./app'); // your current file
 
 app.get('/', (req, res) => {
   res.send('Hello from the backend!');
@@ -78,3 +77,6 @@ async function getWeatherByCity(city) {
 module.exports = app;
 
 
+app.listen(4000, () => {
+  console.log('Server is running on port 4000');
+});  
