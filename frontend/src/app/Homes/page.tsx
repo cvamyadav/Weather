@@ -56,16 +56,14 @@ export default function Homes() {
     try {
 
       const response = await fetch(
-        `https://weather-x79z.vercel.app/api/weatherdaily/${searchQuery}`
+        `/api/weatherdaily/${searchQuery}`
       );
-              console.log("Response not ok:", response.status, response);
 
       if (!response.ok) {
         throw new Error("Search again");
       }
       
       const data = await response.json();
-      console.log("Fetched weather data:", data);
       setWeather(data);
       
       setSearchHistory(prev => {
